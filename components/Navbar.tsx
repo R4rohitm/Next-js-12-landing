@@ -67,7 +67,7 @@ export default function Navbar({ items }: NavbarProps) {
   return (
     <NavbarContainer hidden={isNavbarHidden} transparent={isTransparent}>
       <Content>
-        <NextLink href="/" passHref>
+        <NextLink href="/home" passHref>
           <LogoWrapper>
             <Logo />
           </LogoWrapper>
