@@ -62,7 +62,6 @@ const HomepageWrapper = styled.div`
     margin-bottom: 15rem;
   }
 `;
-
 const DarkerBackgroundContainer = styled.div`
   background: rgb(var(--background));
 
