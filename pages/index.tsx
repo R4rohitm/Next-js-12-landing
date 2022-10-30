@@ -56,6 +56,7 @@ export default function Homepage({ posts }: InferGetStaticPropsType<typeof getSt
     </>
   );
 }
+
 const HomepageWrapper = styled.div`
   & > :last-child {
     margin-bottom: 15rem;
