@@ -1,7 +1,7 @@
 export default function HeroIllustration() {
   return (
     <>
-        {/* <svg
+        <svg
       id="70093593-85a2-447b-b81e-208691c845a3"
       data-name="Layer 1"
       xmlns="http://www.w3.org/2000/svg"
@@ -765,8 +765,8 @@ export default function HeroIllustration() {
       <circle cx="64.88" cy="252.46" r="36.25" fill="#1473fa" opacity="0.1" />
       <circle cx="507.64" cy="789.47" r="36.25" fill="#1473fa" opacity="0.1" />
       <circle cx="990.55" cy="768.57" r="36.25" fill="#1473fa" opacity="0.1" />
-    </svg> */}
-     <img src="https://o.remove.bg/downloads/f172dbf3-4425-4917-853f-07ba500bbdae/6869953_29112-removebg-preview.png" alt="" />
+    </svg>
+     {/* <img src="https://o.remove.bg/downloads/f172dbf3-4425-4917-853f-07ba500bbdae/6869953_29112-removebg-preview.png" alt="" /> */}
     
     </>
   )
