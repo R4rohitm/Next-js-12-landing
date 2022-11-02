@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 const ByUnits = ({ setFormData, formData }: any) => {
-  const [dimensionsArray, setDimensionsArray] = useState([{ id: 1, width: '' }]);
+  const [dimensionsArray, setDimensionsArray] = useState<any[]>([{ id: 1, width: '' }]);
 
   const handleRemoveComponent = (index: number) => {
     const list = [...dimensionsArray];
@@ -97,7 +97,6 @@ const ByUnits = ({ setFormData, formData }: any) => {
                       });
                     }}
                     className="bg-white text-gray-900 text-lg outline-none block w-[80%] p-5"
-                    s
                     placeholder="Gross Weight"
                   />
                   <div className="w-[20%] border-l-2 border-gray-300 text-gray-500 text-lg flex justify-center items-center">kg</div>

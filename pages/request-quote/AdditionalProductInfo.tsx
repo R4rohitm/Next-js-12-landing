@@ -49,11 +49,11 @@ function classNames(...classes: any[]) {
   return classes.filter(Boolean).join(' ');
 }
 
-const AdditionalProductInfo = ({ setFormData, formData, handleChange }: any) => {
+const AdditionalProductInfo = ({ setFormData, formData }: any) => {
   const [hazardousCargo, setHazardousCargo] = useState(false);
-  const [selected, setSelected] = useState(imo_class[0]);
+  const [selected, setSelected] = useState<any>(imo_class[0]);
   const [perishableCargo, setPerishableCargo] = useState(false);
-  const [selectedTempType, setSelectedTempType] = useState(temptype[0]);
+  const [selectedTempType, setSelectedTempType] = useState<any>(temptype[0]);
   const [oversizedCargo, setOversizedCargo] = useState(false);
   const [liquidCargo, setLiquidCargo] = useState(false);
 
@@ -237,7 +237,6 @@ const AdditionalProductInfo = ({ setFormData, formData, handleChange }: any) => 
       {hazardousCargo ? (
         <div className="grid gap-6 mb-6 md:grid-cols-2">
           <Listbox
-            id="transportation_by"
             value={selected}
             onChange={(e) => {
               setSelected(e);
@@ -252,7 +251,6 @@ const AdditionalProductInfo = ({ setFormData, formData, handleChange }: any) => 
                 },
               });
             }}
-            class="w-[81%] sm:w-full"
           >
             {({ open }) => (
               <div className="flex flex-col">
@@ -260,7 +258,7 @@ const AdditionalProductInfo = ({ setFormData, formData, handleChange }: any) => 
                   Imo Class<span className="text-[red]">*</span>
                 </label>
                 <div className="relative mt-1">
-                  <Listbox.Button className="relative w-full cursor-default rounded-md border hover:border-[#4F46E5] border-gray-300 bg-white py-2.5 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm">
+                  <Listbox.Button className="relative w-[81%] cursor-default rounded-md border hover:border-[#4F46E5] border-gray-300 bg-white py-2.5 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm">
                     <span className="flex items-center">
                       <span className="ml-3 block truncate">{selected.imoclass}</span>
                     </span>
@@ -321,12 +319,12 @@ const AdditionalProductInfo = ({ setFormData, formData, handleChange }: any) => 
               placeholder="0"
               required
               onInvalid={(F) => {
-                F.target.setCustomValidity('Enter valid Un Number.');
-                F.target.style.border = '1px solid red';
+                (F.target as HTMLInputElement).setCustomValidity('Enter valid Un Number.');
+                (F.target as HTMLInputElement).style.border = '1px solid red';
               }}
               onInput={(F) => {
-                F.target.setCustomValidity('');
-                F.target.style.border = 'none';
+                (F.target as HTMLInputElement).setCustomValidity('');
+                (F.target as HTMLInputElement).style.border = 'none';
               }}
               onChange={(e) => {
                 setFormData({
@@ -417,15 +415,15 @@ const AdditionalProductInfo = ({ setFormData, formData, handleChange }: any) => 
                             }
                             value={type}
                           >
-                            {({ selectedTempType, active }) => (
+                            {({ selected, active }) => (
                               <>
                                 <div className="flex items-center">
-                                  <span className={classNames(selectedTempType ? 'font-semibold' : 'font-normal', 'ml-3 block truncate')}>
+                                  <span className={classNames(selected ? 'font-semibold' : 'font-normal', 'ml-3 block truncate')}>
                                     {type.type}
                                   </span>
                                 </div>
 
-                                {selectedTempType ? (
+                                {selected ? (
                                   <span
                                     className={classNames(
                                       active ? 'text-white' : 'text-indigo-600',

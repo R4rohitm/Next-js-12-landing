@@ -11,7 +11,6 @@ const CountryIsoCode = ({ formData, setFormData }: any) => {
   const [selectedCountry, setSelectedCountry] = useState(Data[98]);
   return (
     <Listbox
-      id="country_code"
       value={selectedCountry}
       onChange={(e) => {
         setSelectedCountry(e);

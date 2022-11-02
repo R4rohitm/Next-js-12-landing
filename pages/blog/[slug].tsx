@@ -62,9 +62,7 @@ export default function SingleArticlePage(props: InferGetStaticPropsType<typeof 
   return (
     <>
       <Head>
-        <noscript>
-          <link rel="stylesheet" href="/prism-theme.css" />
-        </noscript>
+        <noscript>{/* <link rel="stylesheet" href="/prism-theme.css" /> */}</noscript>
       </Head>
       <OpenGraphHead slug={slug} {...meta} />
       <StructuredDataHead slug={slug} {...meta} />

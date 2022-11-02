@@ -75,7 +75,6 @@ export default function Sea({ setFormData, formData, handleChange }: any) {
     <>
       <div className="grid gap-6 mb-8 md:grid-cols-2">
         <Listbox
-          id="transportation_by"
           value={selected}
           onChange={(e) => {
             setSelected(e);
@@ -147,13 +146,12 @@ export default function Sea({ setFormData, formData, handleChange }: any) {
       {selected.id === 1 ? (
         <div className="grid gap-6 mb-8 md:grid-cols-2">
           <Listbox
-            id="container_type"
             value={selectedContainer}
             onChange={(e) => {
               setSelectedContainer(e);
               setFormData({
                 ...formData,
-                container_type: e.container_type,
+                container_type: e?.['container_type'],
               });
             }}
           >
@@ -166,8 +164,8 @@ export default function Sea({ setFormData, formData, handleChange }: any) {
                   <Listbox.Button className="relative w-full cursor-default rounded-lg border hover:border-[#4F46E5] border-gray-300 bg-white py-5 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500">
                     <span className="flex items-center">
                       <span className="ml-3 block truncate text-lg">
-                        {selectedContainer?.container_type ? (
-                          selectedContainer.container_type
+                        {selectedContainer?.['container_type'] ? (
+                          selectedContainer['container_type']
                         ) : (
                           <p className="text-gray-400 text-lg">Choose Container</p>
                         )}
@@ -191,17 +189,15 @@ export default function Sea({ setFormData, formData, handleChange }: any) {
                           }
                           value={type}
                         >
-                          {({ selectedContainer, active }) => (
+                          {({ selected, active }) => (
                             <>
                               <div className="flex items-center">
-                                <span
-                                  className={classNames(selectedContainer ? 'font-semibold' : 'font-normal', 'ml-3 block truncate text-lg')}
-                                >
+                                <span className={classNames(selected ? 'font-semibold' : 'font-normal', 'ml-3 block truncate text-lg')}>
                                   {type.container_type}
                                 </span>
                               </div>
 
-                              {selectedContainer ? (
+                              {selected ? (
                                 <span
                                   className={classNames(
                                     active ? 'text-white' : 'text-indigo-600',
@@ -232,13 +228,13 @@ export default function Sea({ setFormData, formData, handleChange }: any) {
               className="bg-white rounded-lg border border-gray-300 text-gray-900 text-lg focus:outline-[#4F46E5] hover:border-[#4F46E5] block w-full p-5 mb-2"
               placeholder="0"
               required
-              onInvalid={(F) => {
-                F.target.setCustomValidity('Enter valid Quantity of Containers.');
-                F.target.style.border = '1px solid red';
+              onInvalid={(e) => {
+                (e.target as HTMLInputElement).setCustomValidity('Enter valid Quantity of Containers.');
+                (e.target as HTMLInputElement).style.border = '1px solid red';
               }}
-              onInput={(F) => {
-                F.target.setCustomValidity('');
-                F.target.style.border = 'none';
+              onInput={(e) => {
+                (e.target as HTMLInputElement).setCustomValidity('');
+                (e.target as HTMLInputElement).style.border = 'none';
               }}
             />
           </div>
@@ -280,13 +276,13 @@ export default function Sea({ setFormData, formData, handleChange }: any) {
                       className="bg-white text-gray-900 text-lg p-5 outline-none w-[85%]"
                       placeholder="0"
                       required
-                      onInvalid={(F) => {
-                        F.target.setCustomValidity('Enter valid Weight.');
-                        F.target.style.border = '1px solid red';
+                      onInvalid={(e) => {
+                        (e.target as HTMLInputElement).setCustomValidity('Enter valid Weight.');
+                        (e.target as HTMLInputElement).style.border = '1px solid red';
                       }}
-                      onInput={(F) => {
-                        F.target.setCustomValidity('');
-                        F.target.style.border = 'none';
+                      onInput={(e) => {
+                        (e.target as HTMLInputElement).setCustomValidity('');
+                        (e.target as HTMLInputElement).style.border = 'none';
                       }}
                     />
                     <div className="w-[15%] border-l-2 border-gray-300 text-gray-500 text-lg flex justify-center items-center">kg</div>
@@ -304,13 +300,13 @@ export default function Sea({ setFormData, formData, handleChange }: any) {
                       className="bg-white text-gray-900 text-lg p-5 outline-none w-[85%]"
                       placeholder="0"
                       required
-                      onInvalid={(F) => {
-                        F.target.setCustomValidity('Enter valid Volume.');
-                        F.target.style.border = '1px solid red';
+                      onInvalid={(e) => {
+                        (e.target as HTMLInputElement).setCustomValidity('Enter valid Volume.');
+                        (e.target as HTMLInputElement).style.border = '1px solid red';
                       }}
-                      onInput={(F) => {
-                        F.target.setCustomValidity('');
-                        F.target.style.border = 'none';
+                      onInput={(e) => {
+                        (e.target as HTMLInputElement).setCustomValidity('');
+                        (e.target as HTMLInputElement).style.border = 'none';
                       }}
                     />
                     <div className="w-[15%] border-l-2 border-gray-300 text-gray-500 text-lg flex justify-center items-center">m³</div>
@@ -324,7 +320,6 @@ export default function Sea({ setFormData, formData, handleChange }: any) {
         <>
           <div className="grid gap-6 mb-8 md:grid-cols-2">
             <Listbox
-              id="ship_type"
               value={selectedShipType}
               onChange={(e) => {
                 setSelectedShipType(e);
@@ -368,20 +363,15 @@ export default function Sea({ setFormData, formData, handleChange }: any) {
                             }
                             value={type}
                           >
-                            {({ selectedShipType, active }) => (
+                            {({ selected, active }) => (
                               <>
                                 <div className="flex items-center">
-                                  <span
-                                    className={classNames(
-                                      selectedShipType ? 'font-semibold' : 'font-normal',
-                                      'ml-3 block truncate text-lg',
-                                    )}
-                                  >
+                                  <span className={classNames(selected ? 'font-semibold' : 'font-normal', 'ml-3 block truncate text-lg')}>
                                     {type.shiptype}
                                   </span>
                                 </div>
 
-                                {selectedShipType ? (
+                                {selected ? (
                                   <span
                                     className={classNames(
                                       active ? 'text-white' : 'text-indigo-600',

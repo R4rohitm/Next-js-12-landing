@@ -18,13 +18,13 @@ let todaysdate: string = yyyy + '-' + mm + '-' + dd;
 
 const RequestQuote2 = () => {
   const [seaSelected, setSeaSelected] = useState(true);
-  const [productDetails, setProductDetails] = useState();
+  const [productDetails, setProductDetails] = useState<any[]>([]);
   const [hsQuery, setHsQuery] = useState('');
   const [hsCodesLoading, setHsCodesLoading] = useState(false);
   const [noResults, setNoResults] = useState(false);
-  const [cities1, setCities1] = useState();
+  const [cities1, setCities1] = useState<any[]>([]);
   const [cityQuery1, setCityQuery1] = useState('');
-  const [cities2, setCities2] = useState();
+  const [cities2, setCities2] = useState<any[]>([]);
   const [cityQuery2, setCityQuery2] = useState('');
   const inputProduct = useRef('');
   const inputCity1 = useRef('');
@@ -35,7 +35,7 @@ const RequestQuote2 = () => {
   const [showModal, setShowModal] = useState(false);
 
   //
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<any>({
     delivery_mode: 'Sea',
     transportation_by: 'FCL',
     dimensions: [],
@@ -167,7 +167,7 @@ const RequestQuote2 = () => {
     }
 
     if (hsQuery.length <= 2) {
-      setProductDetails(null);
+      setProductDetails(null!);
       return;
     } else if (hsQuery.length >= 2) {
       getProductDetails(hsQuery);
@@ -176,7 +176,7 @@ const RequestQuote2 = () => {
 
   useEffect(() => {
     if (cityQuery1.length <= 2) {
-      setCities1(null);
+      setCities1(null!);
       return;
     }
     getLocation1(cityQuery1);
@@ -184,7 +184,7 @@ const RequestQuote2 = () => {
 
   useEffect(() => {
     if (cityQuery2.length <= 2) {
-      setCities2(null);
+      setCities2(null!);
       return;
     }
     getLocation2(cityQuery2);
@@ -235,12 +235,12 @@ const RequestQuote2 = () => {
                   onFocus={() => setClearProdInputIcon(true)}
                   onBlur={() => setClearProdInputIcon(false)}
                   onInvalid={(e) => {
-                    e.target.setCustomValidity('Enter valid product details');
-                    e.target.style.border = '1px solid red';
+                    (e.target as HTMLInputElement).setCustomValidity('Enter valid product details');
+                    (e.target as HTMLInputElement).style.border = '1px solid red';
                   }}
                   onInput={(e) => {
-                    e.target.setCustomValidity('');
-                    e.target.style.border = 'none';
+                    (e.target as HTMLInputElement).setCustomValidity('');
+                    (e.target as HTMLInputElement).style.border = 'none';
                   }}
                 />
                 <span id="hscode" className="text-xl"></span>
@@ -294,6 +294,7 @@ const RequestQuote2 = () => {
                   {productDetails.map((product) => {
                     return (
                       <div
+                        key={product._id}
                         onClick={() => {
                           handleClickProductName(product.name, product.description, product.hscode);
                           setFormData({
@@ -421,18 +422,18 @@ const RequestQuote2 = () => {
                   id="location_from"
                   autoComplete="off"
                   onKeyUp={(e) => {
-                    setCityQuery1(e.target.value);
+                    setCityQuery1((e.target as HTMLInputElement).value);
                   }}
                   className="bg-white rounded-lg border border-gray-300 text-xl focus:outline-[#4F46E5] hover:border-[#4F46E5] block w-full p-5 mb-2"
                   placeholder="City, Port"
                   required
                   onInvalid={(e) => {
-                    e.target.setCustomValidity('Enter valid location');
-                    e.target.style.border = '1px solid red';
+                    (e.target as HTMLInputElement).setCustomValidity('Enter valid location');
+                    (e.target as HTMLInputElement).style.border = '1px solid red';
                   }}
                   onInput={(e) => {
-                    e.target.setCustomValidity('');
-                    e.target.style.border = 'none';
+                    (e.target as HTMLInputElement).setCustomValidity('');
+                    (e.target as HTMLInputElement).style.border = 'none';
                   }}
                 />
               </div>
@@ -447,7 +448,7 @@ const RequestQuote2 = () => {
                         onClick={() => {
                           setCityQuery1('');
                           handleClickCity1(city.name, city.country);
-                          setCities1(null);
+                          setCities1(null!);
                         }}
                         className="text-lg cursor-pointer font-medium px-6 py-4 whitespace-nowrap hover:bg-[#4F46E5] hover:text-white"
                         key={city._id}
@@ -470,17 +471,17 @@ const RequestQuote2 = () => {
                   type="text"
                   id="location_to"
                   autoComplete="off"
-                  onKeyUp={(e) => setCityQuery2(e.target.value)}
+                  onKeyUp={(e) => setCityQuery2((e.target as HTMLInputElement).value)}
                   className="bg-white rounded-lg border border-gray-300 text-xl focus:outline-[#4F46E5] hover:border-[#4F46E5] block w-full p-5 mb-2"
                   placeholder="City, Port"
                   required
                   onInvalid={(e) => {
-                    e.target.setCustomValidity('Enter valid location');
-                    e.target.style.border = '1px solid red';
+                    (e.target as HTMLInputElement).setCustomValidity('Enter valid location');
+                    (e.target as HTMLInputElement).style.border = '1px solid red';
                   }}
                   onInput={(e) => {
-                    e.target.setCustomValidity('');
-                    e.target.style.border = 'none';
+                    (e.target as HTMLInputElement).setCustomValidity('');
+                    (e.target as HTMLInputElement).style.border = 'none';
                   }}
                 />
               </div>
@@ -495,7 +496,7 @@ const RequestQuote2 = () => {
                         onClick={() => {
                           setCityQuery2('');
                           handleClickCity2(city.name, city.country);
-                          setCities2(null);
+                          setCities2(null!);
                         }}
                         className="text-lg cursor-pointer font-medium px-6 py-4 whitespace-nowrap hover:bg-[#4F46E5] hover:text-white"
                         key={city._id}
@@ -524,12 +525,12 @@ const RequestQuote2 = () => {
                 placeholder="Select"
                 required
                 onInvalid={(e) => {
-                  e.target.setCustomValidity('Enter valid date');
-                  e.target.style.border = '1px solid red';
+                  (e.target as HTMLInputElement).setCustomValidity('Enter valid date');
+                  (e.target as HTMLInputElement).style.border = '1px solid red';
                 }}
                 onInput={(e) => {
-                  e.target.setCustomValidity('');
-                  e.target.style.border = 'none';
+                  (e.target as HTMLInputElement).setCustomValidity('');
+                  (e.target as HTMLInputElement).style.border = 'none';
                 }}
               />
             </div>
@@ -539,7 +540,6 @@ const RequestQuote2 = () => {
               Additional Information
             </label>
             <textarea
-              // type="text"
               style={{ resize: 'none' }}
               name="additional_information"
               onChange={(e) => handleChange(e)}
@@ -563,12 +563,12 @@ const RequestQuote2 = () => {
                 placeholder="First Name"
                 required
                 onInvalid={(e) => {
-                  e.target.setCustomValidity('Enter your First Name.');
-                  e.target.style.border = '1px solid red';
+                  (e.target as HTMLInputElement).setCustomValidity('Enter your First Name.');
+                  (e.target as HTMLInputElement).style.border = '1px solid red';
                 }}
                 onInput={(e) => {
-                  e.target.setCustomValidity('');
-                  e.target.style.border = 'none';
+                  (e.target as HTMLInputElement).setCustomValidity('');
+                  (e.target as HTMLInputElement).style.border = 'none';
                 }}
               />
             </div>
@@ -584,12 +584,12 @@ const RequestQuote2 = () => {
                 placeholder="Last Name"
                 required
                 onInvalid={(e) => {
-                  e.target.setCustomValidity('Enter your last name.');
-                  e.target.style.border = '1px solid red';
+                  (e.target as HTMLInputElement).setCustomValidity('Enter your last name.');
+                  (e.target as HTMLInputElement).style.border = '1px solid red';
                 }}
                 onInput={(e) => {
-                  e.target.setCustomValidity('');
-                  e.target.style.border = 'none';
+                  (e.target as HTMLInputElement).setCustomValidity('');
+                  (e.target as HTMLInputElement).style.border = 'none';
                 }}
               />
             </div>
@@ -608,19 +608,19 @@ const RequestQuote2 = () => {
                   onChange={(e) =>
                     setFormData({
                       ...formData,
-                      phone: { ...formData.phone, number: e.target.value },
+                      phone: { ...formData.phone, number: (e.target as HTMLInputElement).value },
                     })
                   }
                   className="bg-white text-lg block w-8/12 p-5 focus:outline-none "
                   placeholder="123-456-7890"
                   required
                   onInvalid={(e) => {
-                    e.target.setCustomValidity('Enter valid phone number.');
-                    e.target.style.border = '1px solid red';
+                    (e.target as HTMLInputElement).setCustomValidity('Enter valid phone number.');
+                    (e.target as HTMLInputElement).style.border = '1px solid red';
                   }}
                   onInput={(e) => {
-                    e.target.setCustomValidity('');
-                    e.target.style.border = 'none';
+                    (e.target as HTMLInputElement).setCustomValidity('');
+                    (e.target as HTMLInputElement).style.border = 'none';
                   }}
                 />
               </div>
@@ -637,12 +637,12 @@ const RequestQuote2 = () => {
                 placeholder="johndoe@gmail.com"
                 required
                 onInvalid={(e) => {
-                  e.target.setCustomValidity('Enter valid email.');
-                  e.target.style.border = '1px solid red';
+                  (e.target as HTMLInputElement).setCustomValidity('Enter valid email.');
+                  (e.target as HTMLInputElement).style.border = '1px solid red';
                 }}
                 onInput={(e) => {
-                  e.target.setCustomValidity('');
-                  e.target.style.border = 'none';
+                  (e.target as HTMLInputElement).setCustomValidity('');
+                  (e.target as HTMLInputElement).style.border = 'none';
                 }}
               />
             </div>
@@ -722,7 +722,6 @@ const RequestQuote2 = () => {
                     Close
                   </button>
                   <button
-                    className="newrq"
                     className="bg-[#4F46E5] text-white active:bg-[#4F46E5] font-bold uppercase text-[10px] md:text-sm px-3 py-2 md:px-6 md:py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                     type="button"
                     onClick={() => {
