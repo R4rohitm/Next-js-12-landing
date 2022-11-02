@@ -52,7 +52,7 @@ const container_type = [
   { id: 31, container_type: 'N/A' },
 ];
 
-function classNames(...classes: any) {
+function classNames(...classes: any[]) {
   return classes.filter(Boolean).join(' ');
 }
 

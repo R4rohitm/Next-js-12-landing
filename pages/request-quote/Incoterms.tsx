@@ -29,6 +29,7 @@ const Incoterms = ({ formData, setFormData }: any) => {
         <input
           id="link-checkbox"
           type="checkbox"
+          defaultChecked={false}
           checked={exw}
           value=""
           className="w-6 h-6 bg-gray-100 rounded border-gray-300 hover:border-[#4F46E5] focus:outline-none accent-[#4F46E5]"
@@ -57,6 +58,7 @@ const Incoterms = ({ formData, setFormData }: any) => {
         <input
           id="link-checkbox"
           type="checkbox"
+          defaultChecked={false}
           checked={fob}
           value=""
           className="w-6 h-6 bg-gray-100 rounded border-gray-300 hover:border-[#4F46E5] focus:outline-none accent-[#4F46E5]"
@@ -85,6 +87,7 @@ const Incoterms = ({ formData, setFormData }: any) => {
         <input
           id="link-checkbox"
           type="checkbox"
+          defaultChecked={false}
           checked={cfr}
           value=""
           className="w-6 h-6 bg-gray-100 rounded border-gray-300 hover:border-[#4F46E5] focus:outline-none accent-[#4F46E5]"
@@ -113,6 +116,7 @@ const Incoterms = ({ formData, setFormData }: any) => {
         <input
           id="link-checkbox"
           type="checkbox"
+          defaultChecked={false}
           checked={cif}
           value=""
           className="w-6 h-6 bg-gray-100 rounded border-gray-300 hover:border-[#4F46E5] focus:outline-none accent-[#4F46E5]"
@@ -141,6 +145,7 @@ const Incoterms = ({ formData, setFormData }: any) => {
         <input
           id="link-checkbox"
           type="checkbox"
+          defaultChecked={false}
           checked={dap}
           value=""
           className="w-6 h-6 bg-gray-100 rounded border-gray-300 hover:border-[#4F46E5] focus:outline-none accent-[#4F46E5]"
@@ -169,6 +174,7 @@ const Incoterms = ({ formData, setFormData }: any) => {
         <input
           id="link-checkbox"
           type="checkbox"
+          defaultChecked={false}
           checked={ddp}
           value=""
           className="w-6 h-6 bg-gray-100 rounded border-gray-300 hover:border-[#4F46E5] accent-[#4F46E5]"
