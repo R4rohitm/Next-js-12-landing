@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const Incoterms = ({ formData, setFormData }) => {
+const Incoterms = ({ formData, setFormData }: any) => {
   const [exw, setExw] = useState(false);
   const [fob, setFob] = useState(false);
   const [cfr, setCfr] = useState(false);
@@ -8,7 +8,7 @@ const Incoterms = ({ formData, setFormData }) => {
   const [dap, setDap] = useState(false);
   const [ddp, setDdp] = useState(false);
   return (
-    <div class="grid gap-2 mb-6 grid-cols-3 sm:grid-cols-3 sm:w-[75%] md:grid-cols-4 md:w-[80%] lg:grid-cols-6 xl:grid-cols-6 lg:w-full xl:w-full">
+    <div className="grid gap-2 mb-6 grid-cols-3 w-[80%] sm:grid-cols-3 sm:w-[60%] sm:gap-4 md:grid-cols-3 md:w-[50%] md:gap-6 lg:grid-cols-6 xl:grid-cols-6 lg:w-[100%] lg:gap-4 xl:w-[90%]">
       <button
         type="button"
         onClick={() => {
@@ -20,10 +20,10 @@ const Incoterms = ({ formData, setFormData }) => {
           setDdp(false);
           setFormData({ ...formData, incoterms: 'EXW' });
         }}
-        class={
+        className={
           exw
-            ? 'inline-flex items-center justify-between gap-2 mb-2 px-6 md:px-7 py-2 text-black hover:shadow-2xl shadow-md border rounded-full md:w-auto  border-[#4F46E5]'
-            : 'inline-flex items-center justify-between gap-2 mb-2 px-6 md:px-7 py-2 text-black hover:shadow-2xl shadow-md border border-transparent rounded-full md:w-auto hover:border-[#4F46E5] focus:outline-none focus:outline-none'
+            ? 'inline-flex items-center justify-between gap-2 mb-2 px-5 md:px-7 py-4 text-black hover:shadow-2xl shadow-md border rounded-full md:w-auto  border-[#4F46E5]'
+            : 'inline-flex items-center justify-between gap-2 mb-2 px-5 md:px-7 py-4 text-black hover:shadow-2xl shadow-md border border-transparent rounded-full md:w-auto hover:border-[#4F46E5] focus:outline-none'
         }
       >
         <input
@@ -31,10 +31,10 @@ const Incoterms = ({ formData, setFormData }) => {
           type="checkbox"
           checked={exw}
           value=""
-          class="w-4 h-4 bg-gray-100 rounded border-gray-300 hover:border-[#4F46E5] focus:outline-none accent-[#4F46E5]"
+          className="w-6 h-6 bg-gray-100 rounded border-gray-300 hover:border-[#4F46E5] focus:outline-none accent-[#4F46E5]"
         />
-        <div class="flex gap-1 justify-center items-center">
-          <p class="font-sm font-sans font-light">EXW</p>
+        <div className="flex gap-1 justify-center items-center">
+          <p className="font-lg font-normal">EXW</p>
         </div>
       </button>
       <button
@@ -48,7 +48,7 @@ const Incoterms = ({ formData, setFormData }) => {
           setDdp(false);
           setFormData({ ...formData, incoterms: 'FOB' });
         }}
-        class={
+        className={
           fob
             ? 'inline-flex items-center justify-between gap-2 mb-2 px-6 md:px-7 py-2 text-black hover:shadow-2xl shadow-md border rounded-full md:w-auto  border-[#4F46E5]'
             : 'inline-flex items-center justify-between gap-2 mb-2 px-6 md:px-7 py-2 text-black hover:shadow-2xl shadow-md border border-transparent rounded-full md:w-auto hover:border-[#4F46E5] focus:outline-none'
@@ -59,10 +59,10 @@ const Incoterms = ({ formData, setFormData }) => {
           type="checkbox"
           checked={fob}
           value=""
-          class="w-4 h-4 bg-gray-100 rounded border-gray-300 hover:border-[#4F46E5] focus:outline-none accent-[#4F46E5]"
+          className="w-6 h-6 bg-gray-100 rounded border-gray-300 hover:border-[#4F46E5] focus:outline-none accent-[#4F46E5]"
         />
-        <div class="flex gap-1 justify-center items-center">
-          <p class="font-sm font-sans font-light">FOB</p>
+        <div className="flex gap-1 justify-center items-center">
+          <p className="font-lg font-normal">FOB</p>
         </div>
       </button>
       <button
@@ -76,7 +76,7 @@ const Incoterms = ({ formData, setFormData }) => {
           setDdp(false);
           setFormData({ ...formData, incoterms: 'CFR' });
         }}
-        class={
+        className={
           cfr
             ? 'inline-flex items-center justify-between gap-2 mb-2 px-6 md:px-7 py-2 text-black hover:shadow-2xl shadow-md border rounded-full md:w-auto  border-[#4F46E5]'
             : 'inline-flex items-center justify-between gap-2 mb-2 px-6 md:px-7 py-2 text-black hover:shadow-2xl shadow-md border border-transparent rounded-full md:w-auto hover:border-[#4F46E5] focus:outline-none'
@@ -87,10 +87,10 @@ const Incoterms = ({ formData, setFormData }) => {
           type="checkbox"
           checked={cfr}
           value=""
-          class="w-4 h-4 bg-gray-100 rounded border-gray-300 hover:border-[#4F46E5] focus:outline-none accent-[#4F46E5]"
+          className="w-6 h-6 bg-gray-100 rounded border-gray-300 hover:border-[#4F46E5] focus:outline-none accent-[#4F46E5]"
         />
-        <div class="flex gap-1 justify-center items-center">
-          <p class="font-sm font-sans font-light">CFR</p>
+        <div className="flex gap-1 justify-center items-center">
+          <p className="font-lg font-normal">CFR</p>
         </div>
       </button>
       <button
@@ -104,7 +104,7 @@ const Incoterms = ({ formData, setFormData }) => {
           setDdp(false);
           setFormData({ ...formData, incoterms: 'CIF' });
         }}
-        class={
+        className={
           cif
             ? 'inline-flex items-center justify-between gap-2 mb-2 px-6 md:px-7 py-2 text-black hover:shadow-2xl shadow-md border rounded-full md:w-auto  border-[#4F46E5]'
             : 'inline-flex items-center justify-between gap-2 mb-2 px-6 md:px-7 py-2 text-black hover:shadow-2xl shadow-md border border-transparent rounded-full md:w-auto hover:border-[#4F46E5] focus:outline-none'
@@ -115,10 +115,10 @@ const Incoterms = ({ formData, setFormData }) => {
           type="checkbox"
           checked={cif}
           value=""
-          class="w-4 h-4 bg-gray-100 rounded border-gray-300 hover:border-[#4F46E5] focus:outline-none accent-[#4F46E5]"
+          className="w-6 h-6 bg-gray-100 rounded border-gray-300 hover:border-[#4F46E5] focus:outline-none accent-[#4F46E5]"
         />
-        <div class="flex gap-1 justify-center items-center">
-          <p class="font-sm font-sans font-light">CIF</p>
+        <div className="flex gap-1 justify-center items-center">
+          <p className="font-lg font-normal">CIF</p>
         </div>
       </button>
       <button
@@ -132,7 +132,7 @@ const Incoterms = ({ formData, setFormData }) => {
           setDdp(false);
           setFormData({ ...formData, incoterms: 'DAP' });
         }}
-        class={
+        className={
           dap
             ? 'inline-flex items-center justify-between gap-2 mb-2 px-6 md:px-7 py-2 text-black hover:shadow-2xl shadow-md border rounded-full md:w-auto  border-[#4F46E5]'
             : 'inline-flex items-center justify-between gap-2 mb-2 px-6 md:px-7 py-2 text-black hover:shadow-2xl shadow-md border border-transparent rounded-full md:w-auto hover:border-[#4F46E5] focus:outline-none'
@@ -143,10 +143,10 @@ const Incoterms = ({ formData, setFormData }) => {
           type="checkbox"
           checked={dap}
           value=""
-          class="w-4 h-4 bg-gray-100 rounded border-gray-300 hover:border-[#4F46E5] focus:outline-none accent-[#4F46E5]"
+          className="w-6 h-6 bg-gray-100 rounded border-gray-300 hover:border-[#4F46E5] focus:outline-none accent-[#4F46E5]"
         />
-        <div class="flex gap-1 justify-center items-center">
-          <p class="font-sm font-sans font-light">DAP</p>
+        <div className="flex gap-1 justify-center items-center">
+          <p className="font-lg font-normal">DAP</p>
         </div>
       </button>
       <button
@@ -160,7 +160,7 @@ const Incoterms = ({ formData, setFormData }) => {
           setDdp(!ddp);
           setFormData({ ...formData, incoterms: 'DDP' });
         }}
-        class={
+        className={
           ddp
             ? 'inline-flex items-center justify-between gap-2 mb-2 px-6 md:px-7 py-2 text-black hover:shadow-2xl shadow-md border rounded-full md:w-auto  border-[#4F46E5]'
             : 'inline-flex items-center justify-between gap-2 mb-2 px-6 md:px-7 py-2 text-black hover:shadow-2xl shadow-md border border-transparent rounded-full md:w-auto hover:border-[#4F46E5]'
@@ -171,10 +171,10 @@ const Incoterms = ({ formData, setFormData }) => {
           type="checkbox"
           checked={ddp}
           value=""
-          class="w-4 h-4 bg-gray-100 rounded border-gray-300 hover:border-[#4F46E5] accent-[#4F46E5]"
+          className="w-6 h-6 bg-gray-100 rounded border-gray-300 hover:border-[#4F46E5] accent-[#4F46E5]"
         />
-        <div class="flex gap-1 justify-center items-center">
-          <p class="font-sm font-sans font-light">DDP</p>
+        <div className="flex gap-1 justify-center items-center">
+          <p className="font-lg font-normal">DDP</p>
         </div>
       </button>
     </div>

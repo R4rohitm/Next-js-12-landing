@@ -29,13 +29,14 @@ export default function Homepage({ posts }: InferGetStaticPropsType<typeof getSt
           <Partners />
           <BasicSection imageUrl="/demo-illustration-1.svg" title="Lorem ipsum dolor sit amet consectetur." overTitle="sit amet gogo">
             <p>
-            As a Seller, you Focus on Brand, Product and Marketing, and Leave Everything Else to Us for Global Selling{' '}
-              <Link href="/help-center">Possimus ullam velit rem itaque consectetur, in distinctio?</Link> As a Seller, you Focus on Brand, Product and Marketing, and Leave Everything Else to Us for Global Selling
+              As a Seller, you Focus on Brand, Product and Marketing, and Leave Everything Else to Us for Global Selling{' '}
+              <Link href="/help-center">Possimus ullam velit rem itaque consectetur, in distinctio?</Link> As a Seller, you Focus on Brand,
+              Product and Marketing, and Leave Everything Else to Us for Global Selling
             </p>
           </BasicSection>
           <BasicSection imageUrl="/demo-illustration-2.svg" title="Lorem ipsum dolor sit." overTitle="lorem ipsum" reversed>
             <p>
-            Our Solutions Provide and End-to-End Management of Global Logistics for E-Commerce Brands{' '}
+              Our Solutions Provide and End-to-End Management of Global Logistics for E-Commerce Brands{' '}
               <strong>voluptate quo deleniti animi laboriosam</strong>. Possimus ullam velit rem itaque consectetur, in distinctio?
             </p>
             <ul>

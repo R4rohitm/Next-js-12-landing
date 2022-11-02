@@ -15,14 +15,18 @@ export default function Hero() {
     <HeroWrapper>
       <Contents>
         {/* <CustomOverTitle>the coolest, saas product you have ever seen</CustomOverTitle> */}
-        <Heading>Cross Border <br></br> E-Commerce Made Easy </Heading>
+        <Heading>
+          Cross Border <br></br> E-Commerce Made Easy{' '}
+        </Heading>
         <Description>
-        As a Seller, you Focus on Brand, Product and Marketing, and Leave Everything Else to Us for Global Selling
+          As a Seller, you Focus on Brand, Product and Marketing, and Leave Everything Else to Us for Global Selling
         </Description>
         <CustomButtonGroup>
-          <Button onClick={() => setIsModalOpened(true)}>
-            Request quote <span>&rarr;</span>
-          </Button>
+          <NextLink href="request-quote" passHref>
+            <Button>
+              Request quote <span>&rarr;</span>
+            </Button>
+          </NextLink>
           <NextLink href="#whitepaper" passHref>
             <Button transparent>
               Features <span>&rarr;</span>

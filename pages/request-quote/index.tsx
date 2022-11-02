@@ -41,6 +41,8 @@ const RequestQuote2 = () => {
     dimensions: [],
     product_details: {},
     phone: { dialcode: '+91', country: 'India', isocode: 'IN' },
+    location_from: '',
+    location_to: '',
   });
   console.log(formData);
 
@@ -142,8 +144,8 @@ const RequestQuote2 = () => {
 
   const handleClickCity1 = (city: any, country: any) => {
     inputCity1.current = `${city}, ${country}`;
-    let location_from = document.getElementById('location_from') as HTMLInputElement;
-    location_from.value = inputCity1.current;
+    let location_f = document.getElementById('location_from') as HTMLInputElement;
+    location_f.value = inputCity1.current;
     setFormData({ ...formData, location_from: inputCity1.current });
     console.log(inputCity1.current);
   };
@@ -188,7 +190,7 @@ const RequestQuote2 = () => {
     getLocation2(cityQuery2);
   }, [cityQuery2]);
   return (
-    <div className="relative my-12 mx-[3%] lg-mx-[15%] md:mx-[10%] sm:mx-[5%] py-6 px-8  bg-white shadow-md">
+    <div className="relative my-12 mx-[3%] lg-mx-[15%] md:mx-[10%] sm:mx-[5%] py-6 px-8 next-light-theme next-dark-theme">
       <div className="mb-4 text-3xl font-bold md:text-5xl lg:text-6xl flex flex-wrap items-center gap-3">
         <span className="text-transparent bg-clip-text bg-gradient-to-r to-[#4F46E5] from-sky-400">Request a Quote</span>
         <img
@@ -197,16 +199,16 @@ const RequestQuote2 = () => {
           alt="quoteicon"
         />
       </div>
-      <p className="mb-10 px-[1px] font-medium text-2xl text-black">And get the best rates from the leading logistics providers.</p>
+      <p className="mb-10 px-[1px] font-medium text-2xl">And get the best rates from the leading logistics providers.</p>
       <form onSubmit={(e) => handleSubmit(e)}>
         <div className="mb-6 lg:w-8/12 sm:w-full">
           <h5 className="text-3xl font-medium mb-5">Cargo Details</h5>
           <div className="mb-6">
-            <label htmlFor="first_name" className="block mb-2 text-xl font-medium text-gray-900 dark:text-gray-300">
+            <label htmlFor="first_name" className="block mb-2 text-xl font-medium">
               Product <span className="text-[red]">*</span>
             </label>
             <div className="flex flex-col relative">
-              <div className="bg-white border relative rounded-md border-gray-300 focus:outline-[#4F46E5] hover:border-[#4F46E5] flex justify-between items-center gap-3 px-3">
+              <div className="bg-white border relative rounded-xl border-gray-300 focus:outline-[#4F46E5] hover:border-[#4F46E5] flex justify-between items-center gap-3 px-3">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -226,7 +228,7 @@ const RequestQuote2 = () => {
                   type="text"
                   id="product_details"
                   autoComplete="off"
-                  className="text-xl text-gray-900  block w-full p-5 focus:outline-none "
+                  className="text-xl  block w-full p-5 focus:outline-none "
                   placeholder="Enter commodity type or HS code"
                   required
                   onChange={(e) => setHsQuery(e.target.value)}
@@ -259,7 +261,7 @@ const RequestQuote2 = () => {
                 ) : null}
               </div>
               {hsCodesLoading ? (
-                <div className="border m-auto absolute w-full mt-12 h-28 z-30 bg-white flex place-items-center rounded-md">
+                <div className="border m-auto absolute w-full mt-[4.5rem] h-40 z-30 bg-white flex place-items-center rounded-xl">
                   <BarLoader className="m-auto" color="#4F46E5" />
                 </div>
               ) : null}
@@ -270,7 +272,7 @@ const RequestQuote2 = () => {
                 >
                   <svg
                     aria-hidden="true"
-                    className="flex-shrink-0 inline w-5 h-5 mr-3"
+                    className="flex-shrink-0 inline w-8 h-8 mr-3"
                     fill="currentColor"
                     viewBox="0 0 20 20"
                     xmlns="http://www.w3.org/2000/svg"
@@ -282,13 +284,13 @@ const RequestQuote2 = () => {
                     ></path>
                   </svg>
                   <span className="sr-only">Info</span>
-                  <div>
-                    <span className="font-bold">No Results Found!</span> Try Searching for Another Product.
+                  <div className="text-2xl">
+                    <span className="font-bold text-2xl">No Results Found!</span> Try Searching for Another Product.
                   </div>
                 </div>
               ) : null}
               {productDetails && productDetails.length > 0 ? (
-                <div className="border absolute w-full mt-12 max-h-40 z-30 bg-white overflow-y-scroll overflow-x-hidden rounded-md">
+                <div className="border absolute w-full mt-12 max-h-48 z-30 bg-white overflow-y-scroll overflow-x-hidden rounded-xl">
                   {productDetails.map((product) => {
                     return (
                       <div
@@ -300,7 +302,7 @@ const RequestQuote2 = () => {
                           });
                           setHsQuery('');
                         }}
-                        className="text-sm cursor-pointer text-gray-900 font-medium px-6 py-4 whitespace-nowrap"
+                        className="text-xl cursor-pointer font-medium px-6 py-4 whitespace-nowrap"
                       >
                         <h2>
                           {product.name} &nbsp;&nbsp;&nbsp; {product.description} &nbsp; {product.hscode}
@@ -316,10 +318,10 @@ const RequestQuote2 = () => {
             ) : null}
           </div>
           {/* Incoterms */}
-          <h5 className="text-xl font-medium mb-5">Incoterms</h5>
+          <h5 className="text-3xl font-medium mb-5">Incoterms</h5>
           <Incoterms formData={formData} setFormData={setFormData} />
           {/* Delivery Type */}
-          <h5 className="text-xl font-medium mb-5">Delivery</h5>
+          <h5 className="text-3xl font-medium mb-5">Delivery</h5>
           <div className="flex space-x-2 justify-start mb-10">
             <div>
               <button
@@ -334,13 +336,17 @@ const RequestQuote2 = () => {
                 }}
                 className={
                   seaSelected
-                    ? 'px-4 pt-1.5 pb-1 bg-[#4F46E5] text-white font-medium text-xs leading-normal uppercase rounded-lg shadow-md hover:bg-[#4F46E5] hover:text-white hover:shadow-lg focus:bg-[#4F46E5] focus:text-white focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out flex align-center'
-                    : 'px-4 pt-1.5 pb-1 bg-white text-black font-medium text-xs leading-normal uppercase rounded-lg shadow-md hover:bg-[#4F46E5] hover:text-white hover:shadow-lg focus:bg-[#4F46E5] focus:text-white focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out flex align-center'
+                    ? 'group px-6 pt-2.5 pb-2 bg-[#4F46E5] text-white font-medium text-xl leading-normal uppercase rounded-xl shadow-md hover:bg-[#4F46E5] hover:text-white hover:shadow-lg focus:bg-[#4F46E5] focus:text-white focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out flex align-center'
+                    : 'group px-6 pt-2.5 pb-2 bg-white font-medium text-xl leading-normal uppercase rounded-xl shadow-md hover:bg-[#4F46E5] hover:text-white hover:shadow-lg focus:bg-[#4F46E5] focus:text-white focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out flex align-center'
                 }
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="icon icon-tabler icon-tabler-ship w-4 h-4 mr-2"
+                  className={
+                    seaSelected
+                      ? 'icon icon-tabler icon-tabler-ship w-6 h-6 mr-3 text-white'
+                      : 'icon icon-tabler icon-tabler-ship w-6 h-6 mr-3 group-hover:text-white'
+                  }
                   viewBox="0 0 24 24"
                   strokeWidth="2"
                   stroke="currentColor"
@@ -370,13 +376,17 @@ const RequestQuote2 = () => {
                 }}
                 className={
                   !seaSelected
-                    ? 'px-4 pt-1.5 pb-1 bg-[#4F46E5] text-white font-medium text-xs leading-normal uppercase rounded-lg shadow-md hover:bg-[#4F46E5] hover:text-white hover:shadow-lg focus:bg-[#4F46E5] focus:text-white focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out flex align-center'
-                    : 'px-4 pt-1.5 pb-1 bg-white text-black font-medium text-xs leading-normal uppercase rounded-lg shadow-md hover:bg-[#4F46E5] hover:text-white hover:shadow-lg focus:bg-[#4F46E5] focus:text-white focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out flex align-center'
+                    ? 'group px-6 pt-2.5 pb-2 bg-[#4F46E5] text-white font-medium text-xl leading-normal uppercase rounded-xl shadow-md hover:bg-[#4F46E5] hover:text-white hover:shadow-lg focus:bg-[#4F46E5] focus:text-white focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out flex align-center'
+                    : 'group px-6 pt-2.5 pb-2 bg-white font-medium text-xl leading-normal uppercase rounded-xl shadow-md hover:bg-[#4F46E5] hover:text-white hover:shadow-lg focus:bg-[#4F46E5] focus:text-white focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out flex align-center'
                 }
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="icon icon-tabler icon-tabler-plane-inflight w-4 h-4 mr-2"
+                  className={
+                    !seaSelected
+                      ? 'icon icon-tabler icon-tabler-plane-inflight w-6 h-6 mr-3 text-white'
+                      : 'icon icon-tabler icon-tabler-plane-inflight w-6 h-6 mr-3 group-hover:text-white'
+                  }
                   viewBox="0 0 24 24"
                   strokeWidth="2"
                   stroke="currentColor"
@@ -403,7 +413,7 @@ const RequestQuote2 = () => {
           <div className="grid gap-6 mb-6 md:grid-cols-2">
             <div className="flex flex-col relative">
               <div className="relative">
-                <label htmlFor="from_location" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+                <label htmlFor="from_location" className="block mb-2 text-xl font-medium">
                   From <span className="text-[red]">*</span>
                 </label>
                 <input
@@ -413,7 +423,7 @@ const RequestQuote2 = () => {
                   onKeyUp={(e) => {
                     setCityQuery1(e.target.value);
                   }}
-                  className="bg-white rounded-sm border border-gray-300 text-gray-900 text-sm focus:outline-[#4F46E5] hover:border-[#4F46E5] block w-full p-2.5 mb-2"
+                  className="bg-white rounded-lg border border-gray-300 text-xl focus:outline-[#4F46E5] hover:border-[#4F46E5] block w-full p-5 mb-2"
                   placeholder="City, Port"
                   required
                   onInvalid={(e) => {
@@ -429,7 +439,7 @@ const RequestQuote2 = () => {
               {cities1 ? (
                 <div
                   id="locfrom"
-                  className="border absolute shadow-lg w-full mt-[72px] max-h-40 z-30 bg-white overflow-y-scroll overflow-x-hidden rounded-md countryscollbar"
+                  className="border absolute shadow-lg w-full mt-[72px] max-h-48 z-30 bg-white overflow-y-scroll overflow-x-hidden rounded-md countryscollbar"
                 >
                   {cities1.map((city) => {
                     return (
@@ -439,7 +449,7 @@ const RequestQuote2 = () => {
                           handleClickCity1(city.name, city.country);
                           setCities1(null);
                         }}
-                        className="text-sm cursor-pointer text-gray-900 font-medium px-6 py-4 whitespace-nowrap hover:bg-[#4F46E5] hover:text-white"
+                        className="text-lg cursor-pointer font-medium px-6 py-4 whitespace-nowrap hover:bg-[#4F46E5] hover:text-white"
                         key={city._id}
                       >
                         <h2>
@@ -453,7 +463,7 @@ const RequestQuote2 = () => {
             </div>
             <div className="flex flex-col relative">
               <div className="relative">
-                <label htmlFor="last_name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+                <label htmlFor="last_name" className="block mb-2 text-xl font-medium">
                   To <span className="text-[red]">*</span>
                 </label>
                 <input
@@ -461,7 +471,7 @@ const RequestQuote2 = () => {
                   id="location_to"
                   autoComplete="off"
                   onKeyUp={(e) => setCityQuery2(e.target.value)}
-                  className="bg-white rounded-sm border border-gray-300 text-gray-900 text-sm focus:outline-[#4F46E5] hover:border-[#4F46E5] block w-full p-2.5 mb-2"
+                  className="bg-white rounded-lg border border-gray-300 text-xl focus:outline-[#4F46E5] hover:border-[#4F46E5] block w-full p-5 mb-2"
                   placeholder="City, Port"
                   required
                   onInvalid={(e) => {
@@ -477,7 +487,7 @@ const RequestQuote2 = () => {
               {cities2 ? (
                 <div
                   id="locto"
-                  className="border absolute w-full mt-[72px] max-h-40 z-30 bg-white overflow-y-scroll overflow-x-hidden rounded-md countryscollbar"
+                  className="border absolute w-full mt-[72px] max-h-48 z-30 bg-white overflow-y-scroll overflow-x-hidden rounded-md countryscollbar"
                 >
                   {cities2.map((city) => {
                     return (
@@ -487,7 +497,7 @@ const RequestQuote2 = () => {
                           handleClickCity2(city.name, city.country);
                           setCities2(null);
                         }}
-                        className="text-sm cursor-pointer text-gray-900 font-medium px-6 py-4 whitespace-nowrap hover:bg-[#4F46E5] hover:text-white"
+                        className="text-lg cursor-pointer font-medium px-6 py-4 whitespace-nowrap hover:bg-[#4F46E5] hover:text-white"
                         key={city._id}
                       >
                         <h2>
@@ -502,7 +512,7 @@ const RequestQuote2 = () => {
           </div>
           <div className="grid gap-6 mb-6 md:grid-cols-2">
             <div>
-              <label htmlFor="date" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+              <label htmlFor="date" className="block mb-2 text-xl font-medium">
                 Ready to Load <span className="text-[red]">*</span>
               </label>
               <input
@@ -510,7 +520,7 @@ const RequestQuote2 = () => {
                 min={todaysdate}
                 name="ready_to_load"
                 onChange={(e) => handleChange(e)}
-                className="bg-white rounded-sm border border-gray-300 text-gray-900 text-sm focus:outline-[#4F46E5] hover:border-[#4F46E5] block w-full p-2.5 mb-2"
+                className="bg-white rounded-lg border border-gray-300 text-xl focus:outline-[#4F46E5] hover:border-[#4F46E5] block w-full p-5 mb-2"
                 placeholder="Select"
                 required
                 onInvalid={(e) => {
@@ -525,7 +535,7 @@ const RequestQuote2 = () => {
             </div>
           </div>
           <div className="mb-10">
-            <label htmlFor="additional_information" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+            <label htmlFor="additional_information" className="block mb-2 text-xl font-medium">
               Additional Information
             </label>
             <textarea
@@ -533,23 +543,23 @@ const RequestQuote2 = () => {
               style={{ resize: 'none' }}
               name="additional_information"
               onChange={(e) => handleChange(e)}
-              className="bg-white rounded-sm border border-gray-300 text-gray-900 text-sm focus:outline-[#4F46E5] hover:border-[#4F46E5] block w-full p-2.5 mb-2"
+              className="bg-white rounded-lg border border-gray-300 text-lg focus:outline-[#4F46E5] hover:border-[#4F46E5] block w-full p-5 mb-2"
               placeholder="Write a message..."
             />
           </div>
-          <h5 className="relative text-xl font-medium mb-5">Associated services</h5>
+          <h5 className="relative text-3xl font-medium mb-5">Associated services</h5>
           <AssociatedServices formData={formData} setFormData={setFormData} />
-          <h5 className="text-xl font-medium mb-5">Contact Details</h5>
+          <h5 className="text-3xl font-medium mb-5">Contact Details</h5>
           <div className="grid gap-6 mb-6 md:grid-cols-2">
             <div>
-              <label htmlFor="First Name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+              <label htmlFor="First Name" className="block mb-2 text-xl font-medium">
                 First Name <span className="text-[red]">*</span>
               </label>
               <input
                 type="text"
                 name="first_name"
                 onChange={(e) => handleChange(e)}
-                className="bg-white rounded-sm border border-gray-300 text-gray-900 text-sm focus:outline-[#4F46E5] hover:border-[#4F46E5] block w-full p-2.5 mb-2"
+                className="bg-white rounded-lg border border-gray-300 text-lg focus:outline-[#4F46E5] hover:border-[#4F46E5] block w-full p-5 mb-2"
                 placeholder="First Name"
                 required
                 onInvalid={(e) => {
@@ -563,14 +573,14 @@ const RequestQuote2 = () => {
               />
             </div>
             <div>
-              <label htmlFor="Last Name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+              <label htmlFor="Last Name" className="block mb-2 text-xl font-medium">
                 Last Name <span className="text-[red]">*</span>
               </label>
               <input
                 type="text"
                 name="last_name"
                 onChange={(e) => handleChange(e)}
-                className="bg-white rounded-sm border border-gray-300 text-gray-900 text-sm focus:outline-[#4F46E5] hover:border-[#4F46E5] block w-full p-2.5 mb-2"
+                className="bg-white rounded-lg border border-gray-300 text-lg focus:outline-[#4F46E5] hover:border-[#4F46E5] block w-full p-5 mb-2"
                 placeholder="Last Name"
                 required
                 onInvalid={(e) => {
@@ -587,10 +597,10 @@ const RequestQuote2 = () => {
 
           <div className="grid gap-6 mb-6 md:grid-cols-2">
             <div>
-              <label htmlFor="phone" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+              <label htmlFor="phone" className="block mb-2 text-xl font-medium">
                 Phone <span className="text-[red]">*</span>
               </label>
-              <div className="flex justify-between gap:2 items-center bg-white rounded-sm border border-gray-300 text-sm focus:outline-[#4F46E5] hover:border-[#4F46E5] w-full">
+              <div className="flex justify-between gap:2 items-center bg-white rounded-lg border border-gray-300 text-sm focus:outline-[#4F46E5] hover:border-[#4F46E5] w-full">
                 <CountryIsoCode className="w-4/12" formData={formData} setFormData={setFormData} />
                 <input
                   type="number"
@@ -601,7 +611,7 @@ const RequestQuote2 = () => {
                       phone: { ...formData.phone, number: e.target.value },
                     })
                   }
-                  className="bg-white text-gray-900 text-sm block w-8/12 p-2.5 focus:outline-none "
+                  className="bg-white text-lg block w-8/12 p-5 focus:outline-none "
                   placeholder="123-456-7890"
                   required
                   onInvalid={(e) => {
@@ -616,14 +626,14 @@ const RequestQuote2 = () => {
               </div>
             </div>
             <div>
-              <label htmlFor="Email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+              <label htmlFor="Email" className="block mb-2 text-xl font-medium">
                 Email <span className="text-[red]">*</span>
               </label>
               <input
                 type="email"
                 name="email"
                 onChange={(e) => handleChange(e)}
-                className="bg-white rounded-sm border border-gray-300 text-gray-900 text-sm focus:outline-[#4F46E5] hover:border-[#4F46E5] block w-full p-2.5 mb-2"
+                className="bg-white rounded-lg border border-gray-300 text-lg focus:outline-[#4F46E5] hover:border-[#4F46E5] block w-full p-5 mb-2"
                 placeholder="johndoe@gmail.com"
                 required
                 onInvalid={(e) => {
@@ -643,11 +653,11 @@ const RequestQuote2 = () => {
                 id="remember"
                 type="checkbox"
                 value=""
-                className="w-4 h-4 bg-white rounded-sm  border border-gray-300 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800"
+                className="w-6 h-6 bg-white rounded-sm  border border-gray-300 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800"
                 required
               />
             </div>
-            <label htmlFor="remember" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-400 flex">
+            <label htmlFor="remember" className="ml-2 text-lg font-medium dark:text-gray-400 flex">
               I agree with the <p className="text-blue-600 hover:underline dark:text-blue-500 ml-1">terms and conditions</p>.
             </label>
           </div>
@@ -657,7 +667,7 @@ const RequestQuote2 = () => {
           ) : (
             <button
               type="submit"
-              className="text-white bg-[#4F46E5] hover:bg-[#4F46E5] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              className="text-white bg-[#4F46E5] hover:bg-[#4F46E5] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium text-xl w-full sm:w-auto px-8 py-4 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             >
               Submit
             </button>
@@ -687,10 +697,10 @@ const RequestQuote2 = () => {
                     <h4>Your Request has been sent Successfully</h4>
                   </div>
                   <button
-                    className="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-medium outline-none focus:outline-none"
+                    className="p-1 ml-auto bg-transparent border-0 opacity-5 float-right text-3xl leading-none font-medium outline-none focus:outline-none"
                     onClick={() => setShowModal(false)}
                   >
-                    <span className="bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none">×</span>
+                    <span className="bg-transparent opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none">×</span>
                   </button>
                 </div>
                 {/*body*/}
